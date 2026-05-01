@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Arthika v3.1 — Summary rebuilt -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -890,6 +891,261 @@ select.form-input option { background: var(--surface); }
   .balance-card { text-align: left; }
   .form-row { grid-template-columns: 1fr 1fr; }
 }
+
+
+/* ═══════════════════ SUMMARY v2 ═══════════════════ */
+.sum-period-row {
+  display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px;
+}
+.period-tabs {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 6px;
+}
+.period-tab {
+  padding: 9px 0; border-radius: var(--r-sm);
+  border: 1.5px solid var(--border2); background: transparent;
+  color: var(--muted); font-family: var(--sans); font-size: 13px;
+  font-weight: 600; cursor: pointer; transition: all .15s;
+}
+.period-tab.active {
+  background: rgba(34,197,94,.15); border-color: var(--accent); color: var(--accent);
+}
+.date-nav {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 8px 12px;
+}
+.date-nav-btn {
+  background: none; border: none; color: var(--muted);
+  font-size: 20px; cursor: pointer; padding: 0 4px;
+  line-height: 1; transition: color .15s;
+}
+.date-nav-btn:hover { color: var(--accent); }
+.date-nav-label {
+  flex: 1; text-align: center; font-size: 14px;
+  font-weight: 600; color: var(--text);
+}
+
+/* 3-col stat cards */
+.sum-cards3 {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px; margin-bottom: 12px;
+}
+.sum-card3 {
+  border: 1px solid var(--border); border-radius: var(--r);
+  padding: 12px 10px; text-align: center;
+  background: var(--surface); position: relative; overflow: hidden;
+}
+.sum-card3::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+}
+.inc-card::after { background: var(--accent); }
+.exp-card::after { background: var(--red); }
+.net-card::after { background: var(--blue); }
+.sum3-icon {
+  font-size: 12px; font-weight: 700; margin-bottom: 2px;
+  font-family: var(--mono);
+}
+.inc-card .sum3-icon { color: var(--accent); }
+.exp-card .sum3-icon { color: var(--red); }
+.net-card .sum3-icon { color: var(--blue); }
+.sum3-lbl {
+  font-size: 10px; color: var(--muted); text-transform: uppercase;
+  letter-spacing: .6px; margin-bottom: 5px;
+}
+.sum3-val {
+  font-family: var(--mono); font-size: 14px; font-weight: 700;
+  margin-bottom: 3px; line-height: 1.2;
+}
+.sum3-val.inc { color: var(--accent); }
+.sum3-val.exp { color: var(--red); }
+.sum3-count { font-size: 10px; color: var(--muted); }
+
+/* Trend double bars */
+.trend-chart-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.trend-bars-double {
+  display: flex; align-items: flex-end; gap: 4px;
+  height: 80px; padding-top: 8px; min-width: 100%;
+}
+.trend-bar-group { display: flex; gap: 1px; align-items: flex-end; flex: 1; min-width: 8px; }
+.trend-bar-inc { flex: 1; background: rgba(34,197,94,.5); border-radius: 2px 2px 0 0; min-height: 2px; cursor: pointer; transition: background .12s; }
+.trend-bar-inc:hover { background: var(--accent); }
+.trend-bar-exp { flex: 1; background: rgba(239,68,68,.5); border-radius: 2px 2px 0 0; min-height: 2px; cursor: pointer; transition: background .12s; }
+.trend-bar-exp:hover { background: var(--red); }
+.trend-legend-dot { display:inline-block; width:8px; height:8px; border-radius:50%; }
+
+/* Income breakdown bars */
+.inc-bar-row { margin-bottom: 8px; }
+.inc-bar-top { display:flex; justify-content:space-between; font-size:12px; margin-bottom:3px; }
+.inc-bar-name { color:var(--muted); }
+.inc-bar-val { font-family:var(--mono); color:var(--text); }
+.inc-bar-track { height:6px; background:var(--surface3); border-radius:3px; overflow:hidden; }
+.inc-bar-fill { height:100%; background:var(--accent); border-radius:3px; transition:width .5s ease; }
+
+/* ═══════════════════ SEARCH BAR ═══════════════════ */
+.search-wrap {
+  position: relative;
+  margin-bottom: 10px;
+}
+.search-icon {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  color: var(--muted); pointer-events: none; font-size: 15px;
+}
+.search-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1.5px solid var(--border2);
+  border-radius: 10px;
+  padding: 11px 13px 11px 36px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 14px;
+  outline: none;
+  transition: border-color .15s;
+}
+.search-input:focus { border-color: var(--accent); }
+.search-input::placeholder { color: var(--muted); }
+.search-clear {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: var(--muted);
+  font-size: 16px; cursor: pointer; padding: 2px 6px;
+  border-radius: 4px; display: none;
+}
+.search-clear.visible { display: block; }
+
+/* ─── ADVANCED FILTERS PANEL ─── */
+.filter-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 14px;
+  margin-bottom: 12px;
+  display: none;
+  gap: 10px;
+  flex-direction: column;
+}
+.filter-panel.open { display: flex; }
+.filter-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.filter-lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 5px; }
+.filter-select {
+  width: 100%;
+  background: var(--surface2);
+  border: 1.5px solid var(--border2);
+  border-radius: var(--r-sm);
+  padding: 8px 10px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); }
+.filter-amt-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; }
+.filter-sep { color: var(--muted); font-size: 13px; text-align: center; }
+.filter-actions { display: flex; gap: 8px; margin-top: 4px; }
+.filter-reset {
+  flex: 1; padding: 9px; background: var(--surface2); border: 1.5px solid var(--border2);
+  color: var(--muted); border-radius: var(--r-sm); font-family: var(--sans);
+  font-size: 13px; cursor: pointer; transition: all .15s;
+}
+.filter-reset:hover { border-color: var(--red); color: var(--red); }
+.filter-apply {
+  flex: 1; padding: 9px; background: var(--accent); border: none;
+  color: #fff; border-radius: var(--r-sm); font-family: var(--sans);
+  font-size: 13px; font-weight: 600; cursor: pointer; transition: background .15s;
+}
+.filter-apply:hover { background: var(--accent-dim); }
+.filter-toggle-btn {
+  padding: 6px 12px;
+  border: 1.5px solid var(--border2);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: var(--sans);
+  white-space: nowrap;
+  transition: all .15s;
+}
+.filter-toggle-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(34,197,94,.08); }
+
+/* result count badge */
+.result-count {
+  font-size: 12px; color: var(--muted);
+  padding: 4px 0 8px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.result-count span { font-family: var(--mono); color: var(--text); }
+
+/* ═══════════════════ INSIGHT ENGINE ═══════════════════ */
+.insights-page { display: flex; flex-direction: column; gap: 10px; }
+
+.insight-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.insight-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+}
+.insight-card.green::before  { background: var(--accent); }
+.insight-card.red::before    { background: var(--red); }
+.insight-card.amber::before  { background: var(--amber); }
+.insight-card.blue::before   { background: var(--blue); }
+.insight-card.purple::before { background: var(--purple); }
+
+.insight-icon { font-size: 22px; margin-bottom: 8px; }
+.insight-title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .7px; margin-bottom: 4px; }
+.insight-value { font-size: 20px; font-weight: 700; font-family: var(--mono); margin-bottom: 4px; }
+.insight-desc  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.insight-highlight { color: var(--text); font-weight: 600; }
+
+.insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.nudge-card {
+  background: rgba(34,197,94,.07);
+  border: 1px solid rgba(34,197,94,.2);
+  border-radius: var(--r);
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.nudge-card.warn {
+  background: rgba(245,158,11,.07);
+  border-color: rgba(245,158,11,.25);
+}
+.nudge-card.danger {
+  background: rgba(239,68,68,.07);
+  border-color: rgba(239,68,68,.25);
+}
+.nudge-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.nudge-text { font-size: 13px; line-height: 1.5; color: var(--text); }
+.nudge-text strong { color: var(--accent); }
+.nudge-card.warn .nudge-text strong { color: var(--amber); }
+.nudge-card.danger .nudge-text strong { color: var(--red); }
+
+.insights-month-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px;
+}
+.insights-month-sel {
+  background: var(--surface2); border: 1.5px solid var(--border2);
+  color: var(--text); border-radius: var(--r-sm);
+  padding: 7px 12px; font-size: 13px; font-family: var(--sans);
+  outline: none; cursor: pointer; -webkit-appearance: none;
+}
+
+/* mini stat row inside insight card */
+.mini-stats-row { display: flex; gap: 0; margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px; }
+.mini-stat { flex: 1; text-align: center; }
+.mini-stat:not(:last-child) { border-right: 1px solid var(--border); }
+.mini-stat-val { font-family: var(--mono); font-size: 15px; font-weight: 700; }
+.mini-stat-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
 </style>
 </head>
 <body>
@@ -923,6 +1179,10 @@ select.form-input option { background: var(--surface); }
       <button class="nav-link" data-page="summary">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         Summary
+      </button>
+      <button class="nav-link" data-page="insights">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Insights
       </button>
       <button class="nav-link" data-page="backup">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
@@ -1039,11 +1299,63 @@ select.form-input option { background: var(--surface); }
 
       <!-- ── TRANSACTIONS ── -->
       <div class="page" id="page-transactions">
+        <!-- Search -->
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input class="search-input" type="text" id="txn-search" placeholder="Search by note or category...">
+          <button class="search-clear" id="search-clear">✕</button>
+        </div>
+        <!-- Filter chips + toggle -->
         <div class="filter-bar">
           <button class="chip ca" id="chip-all"  onclick="setChip('all')">All</button>
           <button class="chip"    id="chip-exp"  onclick="setChip('expense')">Expense</button>
           <button class="chip"    id="chip-inc"  onclick="setChip('income')">Income</button>
           <input  class="filter-month" type="month" id="filter-month">
+          <button class="filter-toggle-btn" id="filter-toggle-btn" onclick="toggleFilterPanel()">⚙ Filter</button>
+        </div>
+        <!-- Advanced filter panel -->
+        <div class="filter-panel" id="filter-panel">
+          <div class="filter-row">
+            <div>
+              <div class="filter-lbl">Category</div>
+              <select class="filter-select" id="adv-cat">
+                <option value="">All Categories</option>
+              </select>
+            </div>
+            <div>
+              <div class="filter-lbl">Sort By</div>
+              <select class="filter-select" id="adv-sort">
+                <option value="date-desc">Date ↓ Newest</option>
+                <option value="date-asc">Date ↑ Oldest</option>
+                <option value="amt-desc">Amount ↓ High</option>
+                <option value="amt-asc">Amount ↑ Low</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <div class="filter-lbl">Amount Range (₹)</div>
+            <div class="filter-amt-row">
+              <input class="filter-select" type="number" id="adv-min" placeholder="Min" min="0">
+              <span class="filter-sep">—</span>
+              <input class="filter-select" type="number" id="adv-max" placeholder="Max" min="0">
+            </div>
+          </div>
+          <div>
+            <div class="filter-lbl">Date Range</div>
+            <div class="filter-amt-row">
+              <input class="filter-select" type="date" id="adv-from">
+              <span class="filter-sep">—</span>
+              <input class="filter-select" type="date" id="adv-to">
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="filter-reset" onclick="resetFilters()">Reset</button>
+            <button class="filter-apply" onclick="applyFilters()">Apply Filters</button>
+          </div>
+        </div>
+        <!-- Result count -->
+        <div class="result-count" id="result-count" style="display:none">
+          Showing <span id="result-num">0</span> results
         </div>
         <div id="txn-full-list"></div>
         <div class="total-row">
@@ -1069,28 +1381,62 @@ select.form-input option { background: var(--surface); }
 
       <!-- ── SUMMARY ── -->
       <div class="page" id="page-summary">
-        <div class="sum-controls">
-          <input class="sum-select" type="month" id="sum-month">
-          <select class="sum-select" style="flex:0;min-width:110px">
-            <option>Monthly</option>
-          </select>
-        </div>
-        <div class="sum-cards">
-          <div class="sum-card">
-            <div class="sum-lbl">Total Income</div>
-            <div class="sum-val inc" id="sum-inc">₹ 0.00</div>
+
+        <!-- Period selector row -->
+        <div class="sum-period-row">
+          <div class="period-tabs">
+            <button class="period-tab" data-period="daily">Day</button>
+            <button class="period-tab" data-period="weekly">Week</button>
+            <button class="period-tab active" data-period="monthly">Month</button>
+            <button class="period-tab" data-period="yearly">Year</button>
           </div>
-          <div class="sum-card">
-            <div class="sum-lbl">Total Expense</div>
-            <div class="sum-val exp" id="sum-exp">₹ 0.00</div>
-          </div>
-          <div class="sum-card net">
-            <div class="sum-lbl">Net Savings</div>
-            <div class="sum-val" id="sum-net">₹ 0.00</div>
+          <!-- Date navigator -->
+          <div class="date-nav" id="date-nav">
+            <button class="date-nav-btn" id="date-prev">‹</button>
+            <span class="date-nav-label" id="date-nav-label">—</span>
+            <button class="date-nav-btn" id="date-next">›</button>
           </div>
         </div>
+
+        <!-- 3 stat cards: Income / Expense / Net -->
+        <div class="sum-cards3">
+          <div class="sum-card3 inc-card">
+            <div class="sum3-icon">↑</div>
+            <div class="sum3-lbl">Income</div>
+            <div class="sum3-val inc" id="sum-inc">₹ 0.00</div>
+            <div class="sum3-count" id="sum-inc-count">0 entries</div>
+          </div>
+          <div class="sum-card3 exp-card">
+            <div class="sum3-icon">↓</div>
+            <div class="sum3-lbl">Expense</div>
+            <div class="sum3-val exp" id="sum-exp">₹ 0.00</div>
+            <div class="sum3-count" id="sum-exp-count">0 entries</div>
+          </div>
+          <div class="sum-card3 net-card">
+            <div class="sum3-icon">=</div>
+            <div class="sum3-lbl">Net</div>
+            <div class="sum3-val" id="sum-net">₹ 0.00</div>
+            <div class="sum3-count" id="sum-sav-rate">0% saved</div>
+          </div>
+        </div>
+
+        <!-- Income breakdown -->
         <div class="chart-card">
-          <div class="card-title"><span>Expense by Category</span></div>
+          <div class="card-title">
+            <span>Income Breakdown</span>
+            <span id="sum-inc-total" style="font-family:var(--mono);color:var(--accent)"></span>
+          </div>
+          <div id="sum-inc-breakdown">
+            <div style="color:var(--muted);font-size:13px;padding:6px 0">No income data</div>
+          </div>
+        </div>
+
+        <!-- Expense breakdown -->
+        <div class="chart-card">
+          <div class="card-title">
+            <span>Expense Breakdown</span>
+            <span id="sum-exp-total" style="font-family:var(--mono);color:var(--red)"></span>
+          </div>
           <div class="chart-row" style="align-items:flex-start">
             <div class="donut-wrap">
               <svg viewBox="0 0 36 36" id="sum-donut-svg"></svg>
@@ -1101,15 +1447,35 @@ select.form-input option { background: var(--surface); }
             <div class="legend" id="sum-legend"></div>
           </div>
         </div>
+
+        <!-- Trend chart (bars) -->
         <div class="chart-card">
           <div class="card-title">
-            <span>Daily Expense Trend</span>
+            <span id="trend-title">Expense Trend</span>
+            <div style="display:flex;gap:6px">
+              <span class="trend-legend-dot" style="background:var(--accent)"></span><span style="font-size:11px;color:var(--muted)">Inc</span>
+              <span class="trend-legend-dot" style="background:var(--red)"></span><span style="font-size:11px;color:var(--muted)">Exp</span>
+            </div>
           </div>
-          <div class="trend-bars" id="trend-bars"></div>
+          <div class="trend-chart-wrap">
+            <div class="trend-bars-double" id="trend-bars"></div>
+          </div>
           <div class="trend-x" id="trend-x"></div>
         </div>
+
       </div>
 
+
+      <!-- ── INSIGHTS ── -->
+      <div class="page" id="page-insights">
+        <div class="insights-month-bar">
+          <span style="font-size:13px;color:var(--muted);font-weight:600">ANALYSING</span>
+          <input class="insights-month-sel" type="month" id="insights-month">
+        </div>
+        <div class="insights-page" id="insights-content">
+          <div class="empty"><div class="empty-icon">🧠</div><div class="empty-ttl">Loading insights...</div></div>
+        </div>
+      </div>
       <!-- ── BACKUP ── -->
       <div class="page" id="page-backup">
         <div class="backup-card">
@@ -1180,6 +1546,10 @@ select.form-input option { background: var(--surface); }
         <button class="bnav-item" data-page="summary">
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
           Stats
+        </button>
+        <button class="bnav-item" data-page="insights">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          Insights
         </button>
         <button class="bnav-item" data-page="backup">
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
@@ -1397,8 +1767,8 @@ function toast(msg, type='') {
 // ══════════════════════════════════════
 const PAGE_TITLES = {
   dashboard:'Dashboard', add:'Add Transaction', transactions:'Transactions',
-  categories:'Categories', summary:'Summary', backup:'Backup & Restore',
-  settings:'Settings', about:'About'
+  categories:'Categories', summary:'Summary', insights:'Insights',
+  backup:'Backup & Restore', settings:'Settings', about:'About'
 };
 let _currentPage = 'dashboard';
 
@@ -1435,6 +1805,7 @@ async function goTo(page) {
   if (page==='transactions') await renderTransactions();
   if (page==='categories')   await renderCats();
   if (page==='summary')      await renderSummary();
+  if (page==='insights')     await renderInsights();
 }
 
 // ══════════════════════════════════════
@@ -1684,59 +2055,190 @@ async function delCat(id) {
 // ══════════════════════════════════════
 // SUMMARY
 // ══════════════════════════════════════
+
+// ══════════════════════════════════════
+// SUMMARY v2 — Period-aware with Income
+// ══════════════════════════════════════
+let _sumPeriod = 'monthly'; // default
+let _sumOffset = 0; // 0 = current, -1 = prev, +1 = future
+
+function getSumDateRange() {
+  const now = new Date();
+  let start, end, label;
+  if (_sumPeriod === 'daily') {
+    const d = new Date(now); d.setDate(d.getDate() + _sumOffset);
+    start = end = d.toISOString().slice(0,10);
+    label = d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  } else if (_sumPeriod === 'weekly') {
+    const d = new Date(now);
+    const day = d.getDay();
+    d.setDate(d.getDate() - day + (_sumOffset * 7));
+    const s = new Date(d); s.setDate(s.getDate() - s.getDay());
+    const e = new Date(s); e.setDate(s.getDate() + 6);
+    start = s.toISOString().slice(0,10);
+    end   = e.toISOString().slice(0,10);
+    label = s.toLocaleDateString('en-IN',{day:'numeric',month:'short'}) + ' – ' + e.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+  } else if (_sumPeriod === 'monthly') {
+    const d = new Date(now.getFullYear(), now.getMonth() + _sumOffset, 1);
+    start = d.toISOString().slice(0,7);
+    end   = null; // prefix match
+    label = d.toLocaleDateString('en-IN',{month:'long',year:'numeric'});
+  } else { // yearly
+    const yr = now.getFullYear() + _sumOffset;
+    start = `${yr}-01-01`; end = `${yr}-12-31`;
+    label = String(yr);
+  }
+  return { start, end, label };
+}
+
+function filterByRange(txns, { start, end }) {
+  if (_sumPeriod === 'monthly') return txns.filter(t => t.date.startsWith(start));
+  return txns.filter(t => t.date >= start && t.date <= end);
+}
+
 async function renderSummary() {
   await loadCats();
-  const mStr=document.getElementById('sum-month').value;
-  const txns=await DB.getAll('transactions');
-  const filtered=mStr?txns.filter(t=>t.date.startsWith(mStr)):txns;
+  const allTxns = await DB.getAll('transactions');
+  const range   = getSumDateRange();
 
-  let inc=0,exp=0; const byCat={};
-  for(const t of filtered){
-    if(t.type==='income') inc+=t.amount;
-    else { exp+=t.amount; byCat[t.categoryId]=(byCat[t.categoryId]||0)+t.amount; }
+  // Update nav label
+  document.getElementById('date-nav-label').textContent = range.label;
+
+  const filtered = filterByRange(allTxns, range);
+  const expTxns  = filtered.filter(t => t.type === 'expense');
+  const incTxns  = filtered.filter(t => t.type === 'income');
+
+  let inc = incTxns.reduce((s,t)=>s+t.amount, 0);
+  let exp = expTxns.reduce((s,t)=>s+t.amount, 0);
+  const net = inc - exp;
+  const savRate = inc > 0 ? ((net/inc)*100).toFixed(0) : null;
+
+  // Stat cards
+  document.getElementById('sum-inc').textContent = INR(inc);
+  document.getElementById('sum-exp').textContent = INR(exp);
+  document.getElementById('sum-inc-count').textContent = incTxns.length + ' entries';
+  document.getElementById('sum-exp-count').textContent = expTxns.length + ' entries';
+  document.getElementById('sum-inc-total').textContent = INR(inc);
+  document.getElementById('sum-exp-total').textContent = INR(exp);
+
+  const ne = document.getElementById('sum-net');
+  ne.textContent = (net < 0 ? '- ' : '') + INR(net);
+  ne.style.color = net >= 0 ? 'var(--accent)' : 'var(--red)';
+  document.getElementById('sum-sav-rate').textContent = savRate !== null ? savRate + '% saved' : '—';
+
+  // Income breakdown by category
+  const byIncCat = {};
+  for (const t of incTxns) byIncCat[t.categoryId] = (byIncCat[t.categoryId]||0) + t.amount;
+  const incEntries = Object.entries(byIncCat).sort((a,b)=>b[1]-a[1]);
+  const maxInc = incEntries[0]?.[1] || 1;
+  const incBreakEl = document.getElementById('sum-inc-breakdown');
+  if (incEntries.length === 0) {
+    incBreakEl.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:6px 0">No income this period</div>';
+  } else {
+    incBreakEl.innerHTML = incEntries.map(([catId, amt]) => {
+      const cat = getCat(catId);
+      const pct = (amt/inc*100).toFixed(1);
+      return `<div class="inc-bar-row">
+        <div class="inc-bar-top">
+          <span class="inc-bar-name">${cat.icon} ${cat.name}</span>
+          <span class="inc-bar-val">${pct}% · ${INR(amt)}</span>
+        </div>
+        <div class="inc-bar-track">
+          <div class="inc-bar-fill" style="width:${(amt/maxInc*100).toFixed(1)}%"></div>
+        </div>
+      </div>`;
+    }).join('');
   }
 
-  document.getElementById('sum-inc').textContent=INR(inc);
-  document.getElementById('sum-exp').textContent=INR(exp);
-  const net=inc-exp;
-  const ne=document.getElementById('sum-net');
-  ne.textContent=(net<0?'- ':'')+INR(net);
-  ne.style.color=net>=0?'var(--accent)':'var(--red)';
-
-  // Donut
-  const entries=Object.entries(byCat).sort((a,b)=>b[1]-a[1]);
-  document.getElementById('sum-donut-val').textContent=INRs(exp);
-  renderDonut('sum-donut-svg','sum-legend',entries,exp);
-
-  // Category bars
-  const maxV=entries[0]?.[1]||1;
-  document.getElementById('sum-legend').innerHTML=entries.map(([catId,amt])=>{
-    const cat=getCat(catId);
-    const pct=(amt/exp*100).toFixed(1);
+  // Expense donut + legend
+  const expEntries = Object.entries(
+    expTxns.reduce((m,t)=>{ m[t.categoryId]=(m[t.categoryId]||0)+t.amount; return m; }, {})
+  ).sort((a,b)=>b[1]-a[1]);
+  document.getElementById('sum-donut-val').textContent = INRs(exp);
+  renderDonut('sum-donut-svg', 'sum-legend', expEntries, exp);
+  // Update legend with % AND amount
+  document.getElementById('sum-legend').innerHTML = expEntries.map(([catId,amt]) => {
+    const cat = getCat(catId);
+    const pct = exp > 0 ? (amt/exp*100).toFixed(0) : 0;
     return `<div class="legend-item">
       <span class="legend-name"><span class="legend-dot" style="background:${cat.color}"></span>${cat.name}</span>
       <span class="legend-val">${pct}%</span>
     </div>`;
   }).join('');
 
-  // Daily trend (days of month)
-  const daysInMonth=mStr?new Date(mStr.split('-')[0],mStr.split('-')[1],0).getDate():30;
-  const byDay={};
-  for(const t of filtered.filter(t=>t.type==='expense')){
-    const d=parseInt(t.date.split('-')[2]);
-    byDay[d]=(byDay[d]||0)+t.amount;
-  }
-  const maxDay=Math.max(...Object.values(byDay),1);
-  const barsEl=document.getElementById('trend-bars');
-  const xEl=document.getElementById('trend-x');
-  const bars=[],xLabels=[];
-  for(let i=1;i<=daysInMonth;i++){
-    const h=((byDay[i]||0)/maxDay*72).toFixed(1);
-    bars.push(`<div class="trend-bar" style="height:${h}px" title="Day ${i}: ${INR(byDay[i]||0)}"></div>`);
-  }
-  barsEl.innerHTML=bars.join('');
-  xEl.innerHTML=`<span>1</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25</span><span>${daysInMonth}</span>`;
+  // Trend bars — both income & expense
+  renderTrendBars(filtered, range);
 }
+
+function renderTrendBars(filtered, range) {
+  const barsEl = document.getElementById('trend-bars');
+  const xEl    = document.getElementById('trend-x');
+  const titleEl = document.getElementById('trend-title');
+  let labels = [], groups = [];
+
+  if (_sumPeriod === 'daily') {
+    // hourly breakdown (0–23)
+    titleEl.textContent = 'Hourly Trend';
+    const byHrInc = {}, byHrExp = {};
+    for (const t of filtered) {
+      const hr = parseInt((t.time||'00:00').split(':')[0]) || 0;
+      if (t.type==='income')  byHrInc[hr]=(byHrInc[hr]||0)+t.amount;
+      else                    byHrExp[hr]=(byHrExp[hr]||0)+t.amount;
+    }
+    for (let h=0; h<24; h++) { labels.push(h%6===0?`${h}h`:''); groups.push({inc:byHrInc[h]||0, exp:byHrExp[h]||0}); }
+
+  } else if (_sumPeriod === 'weekly') {
+    // per day of week
+    titleEl.textContent = 'Daily Trend (This Week)';
+    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const byDayInc={}, byDayExp={};
+    for (const t of filtered) {
+      const d = new Date(t.date+'T00:00:00').getDay();
+      if (t.type==='income')  byDayInc[d]=(byDayInc[d]||0)+t.amount;
+      else                    byDayExp[d]=(byDayExp[d]||0)+t.amount;
+    }
+    for (let d=0; d<7; d++) { labels.push(days[d]); groups.push({inc:byDayInc[d]||0, exp:byDayExp[d]||0}); }
+
+  } else if (_sumPeriod === 'monthly') {
+    // per day of month
+    titleEl.textContent = 'Daily Trend';
+    const mDate = new Date(range.start + '-01');
+    const dCount = new Date(mDate.getFullYear(), mDate.getMonth()+1, 0).getDate();
+    const byDayInc={}, byDayExp={};
+    for (const t of filtered) {
+      const d = parseInt(t.date.split('-')[2]);
+      if (t.type==='income')  byDayInc[d]=(byDayInc[d]||0)+t.amount;
+      else                    byDayExp[d]=(byDayExp[d]||0)+t.amount;
+    }
+    for (let d=1; d<=dCount; d++) { labels.push(d%5===1?String(d):''); groups.push({inc:byDayInc[d]||0, exp:byDayExp[d]||0}); }
+
+  } else { // yearly — per month
+    titleEl.textContent = 'Monthly Trend';
+    const mNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const yr = range.start.slice(0,4);
+    const byMoInc={}, byMoExp={};
+    for (const t of filtered) {
+      const mo = parseInt(t.date.split('-')[1]);
+      if (t.type==='income')  byMoInc[mo]=(byMoInc[mo]||0)+t.amount;
+      else                    byMoExp[mo]=(byMoExp[mo]||0)+t.amount;
+    }
+    for (let m=1; m<=12; m++) { labels.push(mNames[m-1]); groups.push({inc:byMoInc[m]||0, exp:byMoExp[m]||0}); }
+  }
+
+  const maxVal = Math.max(...groups.map(g => Math.max(g.inc, g.exp)), 1);
+  barsEl.innerHTML = groups.map((g,i) => {
+    const ih = ((g.inc/maxVal)*72).toFixed(1);
+    const eh = ((g.exp/maxVal)*72).toFixed(1);
+    return `<div class="trend-bar-group" title="${labels[i]||i+1}\nInc: ${INR(g.inc)}\nExp: ${INR(g.exp)}">
+      <div class="trend-bar-inc" style="height:${ih}px"></div>
+      <div class="trend-bar-exp" style="height:${eh}px"></div>
+    </div>`;
+  }).join('');
+
+  xEl.innerHTML = labels.map(l => `<span>${l}</span>`).join('');
+}
+
+
 
 // ══════════════════════════════════════
 // BACKUP
@@ -1829,9 +2331,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   const now=new Date();
   const thisMonth=now.toISOString().slice(0,7);
   document.getElementById('filter-month').value=thisMonth;
-  document.getElementById('sum-month').value=thisMonth;
   document.getElementById('filter-month').addEventListener('change',e=>{_filterMonth=e.target.value;renderTransactions();});
-  document.getElementById('sum-month').addEventListener('change',()=>renderSummary());
+
+  // Period tabs
+  document.querySelectorAll('.period-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.period-tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      _sumPeriod = btn.dataset.period;
+      _sumOffset = 0;
+      renderSummary();
+    });
+  });
+
+  // Date nav prev/next
+  document.getElementById('date-prev').addEventListener('click', () => { _sumOffset--; renderSummary(); });
+  document.getElementById('date-next').addEventListener('click', () => { _sumOffset++; renderSummary(); });
 
   // Add transaction
   document.getElementById('btn-add').addEventListener('click', async ()=>{
@@ -1899,6 +2414,352 @@ document.addEventListener('DOMContentLoaded', async () => {
     </div>`;
   }
 });
+
+
+// ══════════════════════════════════════
+// SEARCH & FILTERS
+// ══════════════════════════════════════
+let _advFilters = { cat:'', sortBy:'date-desc', minAmt:'', maxAmt:'', fromDate:'', toDate:'' };
+let _searchQ = '';
+let _filterPanelOpen = false;
+
+function toggleFilterPanel() {
+  _filterPanelOpen = !_filterPanelOpen;
+  document.getElementById('filter-panel').classList.toggle('open', _filterPanelOpen);
+  document.getElementById('filter-toggle-btn').classList.toggle('active', _filterPanelOpen);
+}
+
+function resetFilters() {
+  _advFilters = { cat:'', sortBy:'date-desc', minAmt:'', maxAmt:'', fromDate:'', toDate:'' };
+  _searchQ = '';
+  document.getElementById('txn-search').value = '';
+  document.getElementById('adv-cat').value = '';
+  document.getElementById('adv-sort').value = 'date-desc';
+  document.getElementById('adv-min').value = '';
+  document.getElementById('adv-max').value = '';
+  document.getElementById('adv-from').value = '';
+  document.getElementById('adv-to').value = '';
+  document.getElementById('search-clear').classList.remove('visible');
+  renderTransactions();
+}
+
+function applyFilters() {
+  _advFilters.cat     = document.getElementById('adv-cat').value;
+  _advFilters.sortBy  = document.getElementById('adv-sort').value;
+  _advFilters.minAmt  = document.getElementById('adv-min').value;
+  _advFilters.maxAmt  = document.getElementById('adv-max').value;
+  _advFilters.fromDate= document.getElementById('adv-from').value;
+  _advFilters.toDate  = document.getElementById('adv-to').value;
+  toggleFilterPanel();
+  renderTransactions();
+}
+
+async function populateAdvCatSelect() {
+  await loadCats();
+  const sel = document.getElementById('adv-cat');
+  if (!sel) return;
+  sel.innerHTML = '<option value="">All Categories</option>' +
+    _cats.map(c => `<option value="${c.id}">${c.icon} ${c.name}</option>`).join('');
+}
+
+// Patch renderTransactions to support search + adv filters
+const _origRenderTransactions = renderTransactions;
+renderTransactions = async function() {
+  await loadCats();
+  let txns = await DB.getAll('transactions');
+
+  // type chip
+  if (_chip !== 'all') txns = txns.filter(t => t.type === _chip);
+  // month
+  if (_filterMonth) txns = txns.filter(t => t.date.startsWith(_filterMonth));
+  // search
+  if (_searchQ) {
+    const q = _searchQ.toLowerCase();
+    txns = txns.filter(t => {
+      const cat = getCat(t.categoryId);
+      return (t.note||'').toLowerCase().includes(q) ||
+             cat.name.toLowerCase().includes(q) ||
+             String(t.amount).includes(q);
+    });
+  }
+  // adv cat filter
+  if (_advFilters.cat) txns = txns.filter(t => t.categoryId === _advFilters.cat);
+  // amount range
+  if (_advFilters.minAmt !== '') txns = txns.filter(t => t.amount >= parseFloat(_advFilters.minAmt));
+  if (_advFilters.maxAmt !== '') txns = txns.filter(t => t.amount <= parseFloat(_advFilters.maxAmt));
+  // date range
+  if (_advFilters.fromDate) txns = txns.filter(t => t.date >= _advFilters.fromDate);
+  if (_advFilters.toDate)   txns = txns.filter(t => t.date <= _advFilters.toDate);
+
+  // sort
+  const [sf, sd] = _advFilters.sortBy.split('-');
+  txns.sort((a,b) => {
+    let va = sf === 'amt' ? a.amount : a.date;
+    let vb = sf === 'amt' ? b.amount : b.date;
+    if (sf === 'date') { // secondary: createdAt
+      if (va === vb) return (sd==='desc' ? -1:1) * ((b.createdAt||0)-(a.createdAt||0));
+    }
+    return sd === 'desc' ? (vb > va ? 1 : -1) : (va > vb ? 1 : -1);
+  });
+
+  // result count
+  const hasFilter = _searchQ || _advFilters.cat || _advFilters.minAmt || _advFilters.maxAmt || _advFilters.fromDate || _advFilters.toDate;
+  const countEl = document.getElementById('result-count');
+  if (countEl) {
+    countEl.style.display = hasFilter ? 'flex' : 'none';
+    const numEl = document.getElementById('result-num');
+    if (numEl) numEl.textContent = txns.length;
+  }
+
+  const totalExp = txns.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0);
+  document.getElementById('total-exp-val').textContent = INR(totalExp);
+
+  const el = document.getElementById('txn-full-list');
+  if (!txns.length) {
+    el.innerHTML = `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-ttl">No transactions found</div><div class="empty-sub">Try adjusting filters</div></div>`;
+    return;
+  }
+
+  // Group by date
+  const groups = {};
+  for (const t of txns) (groups[t.date] = groups[t.date]||[]).push(t);
+
+  el.innerHTML = Object.entries(groups).sort((a,b) => {
+    return _advFilters.sortBy === 'date-asc' ? a[0].localeCompare(b[0]) : b[0].localeCompare(a[0]);
+  }).map(([date,items]) => {
+    const dayExp = items.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0);
+    return `<div class="date-group-hd">
+      ${fmtDate(date)} — ${date}
+      ${dayExp>0?`<span class="date-group-total">- ${INR(dayExp)}</span>`:''}
+    </div>
+    <div class="txn-list" style="margin-bottom:10px">${items.map(t => {
+      const cat = getCat(t.categoryId);
+      const noteHl = _searchQ && t.note ? t.note.replace(new RegExp(_searchQ,'gi'), m=>`<mark style="background:rgba(34,197,94,.25);color:var(--accent);border-radius:2px">${m}</mark>`) : (t.note||'—');
+      return `<div class="txn-item">
+        ${catIconEl(cat)}
+        <div class="txn-info">
+          <div class="txn-name">${cat.name}</div>
+          <div class="txn-sub">${noteHl}</div>
+        </div>
+        <div class="txn-right">
+          <div class="txn-amt ${t.type}">${t.type==='expense'?'-':'+'} ${INR(t.amount)}</div>
+          <div class="txn-time">${t.time||''}</div>
+        </div>
+        <button class="del-btn" onclick="delTxn('${t.id}')">✕</button>
+      </div>`;
+    }).join('')}</div>`;
+  }).join('');
+};
+
+// ══════════════════════════════════════
+// INSIGHT ENGINE
+// ══════════════════════════════════════
+async function renderInsights() {
+  const mStr = document.getElementById('insights-month').value;
+  const allTxns = await DB.getAll('transactions');
+  await loadCats();
+
+  // Split month vs all
+  const mTxns  = mStr ? allTxns.filter(t => t.date.startsWith(mStr)) : allTxns;
+  const expTxns = mTxns.filter(t => t.type === 'expense');
+  const incTxns = mTxns.filter(t => t.type === 'income');
+
+  const totalExp = expTxns.reduce((s,t) => s+t.amount, 0);
+  const totalInc = incTxns.reduce((s,t) => s+t.amount, 0);
+  const netSav   = totalInc - totalExp;
+
+  // Days in month for daily avg
+  const now = new Date();
+  const mDate = mStr ? new Date(mStr + '-01') : now;
+  const daysInMonth = new Date(mDate.getFullYear(), mDate.getMonth()+1, 0).getDate();
+  const daysPassed  = mStr === now.toISOString().slice(0,7)
+    ? now.getDate()
+    : daysInMonth;
+  const dailyAvg = daysPassed > 0 ? totalExp / daysPassed : 0;
+
+  // Category breakdown
+  const byCat = {};
+  for (const t of expTxns) byCat[t.categoryId] = (byCat[t.categoryId]||0) + t.amount;
+  const catEntries = Object.entries(byCat).sort((a,b) => b[1]-a[1]);
+  const topCat     = catEntries[0];
+  const topCatInfo = topCat ? getCat(topCat[0]) : null;
+
+  // Last month comparison
+  const prevDate   = new Date(mDate.getFullYear(), mDate.getMonth()-1, 1);
+  const prevStr    = prevDate.toISOString().slice(0,7);
+  const prevExp    = allTxns.filter(t=>t.type==='expense'&&t.date.startsWith(prevStr)).reduce((s,t)=>s+t.amount,0);
+  const changePct  = prevExp > 0 ? ((totalExp - prevExp) / prevExp * 100) : null;
+
+  // Weekday vs Weekend
+  const weekdayExp = expTxns.filter(t => { const d=new Date(t.date+'T00:00:00').getDay(); return d>=1&&d<=5; }).reduce((s,t)=>s+t.amount,0);
+  const weekendExp = expTxns.filter(t => { const d=new Date(t.date+'T00:00:00').getDay(); return d===0||d===6; }).reduce((s,t)=>s+t.amount,0);
+
+  // Largest single transaction
+  const biggestTxn = expTxns.reduce((max,t) => t.amount > (max?.amount||0) ? t : max, null);
+
+  // Savings rate
+  const savingsRate = totalInc > 0 ? (netSav / totalInc * 100) : null;
+
+  // Spending days (unique dates with expense)
+  const spendDays = new Set(expTxns.map(t=>t.date)).size;
+
+  // Build nudges
+  const nudges = [];
+  if (changePct !== null) {
+    if (changePct > 20) nudges.push({ type:'danger', icon:'🚨', text:`Spending <strong>increased by ${changePct.toFixed(0)}%</strong> vs last month (₹${Math.round(prevExp).toLocaleString('en-IN')} → ₹${Math.round(totalExp).toLocaleString('en-IN')})` });
+    else if (changePct < -10) nudges.push({ type:'ok', icon:'🎯', text:`Great job! Spending <strong>down by ${Math.abs(changePct).toFixed(0)}%</strong> compared to last month.` });
+  }
+  if (savingsRate !== null && savingsRate < 10 && totalInc > 0) nudges.push({ type:'warn', icon:'⚠️', text:`Savings rate is only <strong>${savingsRate.toFixed(0)}%</strong>. Aim for at least 20%.` });
+  if (savingsRate !== null && savingsRate >= 30) nudges.push({ type:'ok', icon:'💪', text:`Excellent! You're saving <strong>${savingsRate.toFixed(0)}%</strong> of your income this month.` });
+  if (weekendExp > weekdayExp * 0.6 && weekendExp > 500) nudges.push({ type:'warn', icon:'📅', text:`Weekend spending is high: <strong>${INR(weekendExp)}</strong>. Consider a weekend budget.` });
+  if (topCatInfo && topCat[1] > totalExp * 0.5) nudges.push({ type:'warn', icon:'🏷️', text:`<strong>${topCatInfo.name}</strong> is eating <strong>${(topCat[1]/totalExp*100).toFixed(0)}%</strong> of your expenses. Time to review?` });
+
+  const el = document.getElementById('insights-content');
+  if (!expTxns.length && !incTxns.length) {
+    el.innerHTML = `<div class="empty"><div class="empty-icon">📭</div><div class="empty-ttl">No data for this month</div><div class="empty-sub">Add transactions to see insights</div></div>`;
+    return;
+  }
+
+  el.innerHTML = `
+    ${nudges.length ? nudges.map(n => `
+      <div class="nudge-card ${n.type==='danger'?'danger':n.type==='warn'?'warn':''}">
+        <span class="nudge-icon">${n.icon}</span>
+        <span class="nudge-text">${n.text}</span>
+      </div>`).join('') : ''}
+
+    <!-- Overview stat card -->
+    <div class="insight-card green">
+      <div class="insight-icon">💰</div>
+      <div class="insight-title">Monthly Overview</div>
+      <div class="insight-value" style="color:var(--accent)">${INR(netSav)}</div>
+      <div class="insight-desc">Net savings = <span class="insight-highlight">${INR(totalInc)}</span> income − <span class="insight-highlight">${INR(totalExp)}</span> expense</div>
+      ${savingsRate !== null ? `<div class="insight-desc" style="margin-top:4px">Savings rate: <span class="insight-highlight">${savingsRate.toFixed(1)}%</span></div>` : ''}
+    </div>
+
+    <!-- Grid of quick stats -->
+    <div class="insight-grid">
+      <div class="insight-card amber">
+        <div class="insight-icon">📅</div>
+        <div class="insight-title">Daily Average</div>
+        <div class="insight-value" style="color:var(--amber)">${INR(dailyAvg)}</div>
+        <div class="insight-desc">Per day (${daysPassed} days tracked)</div>
+      </div>
+      <div class="insight-card blue">
+        <div class="insight-icon">🏷️</div>
+        <div class="insight-title">Top Category</div>
+        <div class="insight-value" style="color:var(--blue);font-size:15px">${topCatInfo ? topCatInfo.name : '—'}</div>
+        <div class="insight-desc">${topCat ? INR(topCat[1]) + ` (${(topCat[1]/totalExp*100).toFixed(0)}%)` : 'No expenses'}</div>
+      </div>
+      <div class="insight-card ${changePct===null?'blue':changePct>0?'red':'green'}">
+        <div class="insight-icon">${changePct===null?'📊':changePct>0?'📈':'📉'}</div>
+        <div class="insight-title">vs Last Month</div>
+        <div class="insight-value" style="color:${changePct===null?'var(--blue)':changePct>0?'var(--red)':'var(--accent)'}">
+          ${changePct===null ? '—' : (changePct>0?'+':'')+changePct.toFixed(1)+'%'}
+        </div>
+        <div class="insight-desc">${prevExp>0?'Prev: '+INR(prevExp):'No previous data'}</div>
+      </div>
+      <div class="insight-card purple">
+        <div class="insight-icon">📆</div>
+        <div class="insight-title">Active Days</div>
+        <div class="insight-value" style="color:var(--purple)">${spendDays}</div>
+        <div class="insight-desc">Days you spent money</div>
+      </div>
+    </div>
+
+    <!-- Weekday vs Weekend -->
+    <div class="insight-card blue">
+      <div class="insight-icon">⚖️</div>
+      <div class="insight-title">Weekday vs Weekend Spending</div>
+      <div class="mini-stats-row">
+        <div class="mini-stat">
+          <div class="mini-stat-val" style="color:var(--blue)">${INR(weekdayExp)}</div>
+          <div class="mini-stat-lbl">Weekdays</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val" style="color:var(--purple)">${INR(weekendExp)}</div>
+          <div class="mini-stat-lbl">Weekends</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val" style="color:var(--amber)">${weekdayExp+weekendExp>0?((weekendExp/(weekdayExp+weekendExp))*100).toFixed(0)+'%':'—'}</div>
+          <div class="mini-stat-lbl">Weekend %</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category breakdown -->
+    ${catEntries.length ? `
+    <div class="insight-card red">
+      <div class="insight-icon">📊</div>
+      <div class="insight-title">Expense by Category</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+        ${catEntries.map(([catId,amt]) => {
+          const cat = getCat(catId);
+          const pct = (amt/totalExp*100).toFixed(1);
+          return `<div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px">
+              <span style="color:var(--muted)">${cat.icon} ${cat.name}</span>
+              <span style="font-family:var(--mono);color:var(--text)">${pct}% · ${INR(amt)}</span>
+            </div>
+            <div style="height:6px;background:var(--surface3);border-radius:3px;overflow:hidden">
+              <div style="height:100%;width:${pct}%;background:${cat.color};border-radius:3px;transition:width .5s ease"></div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>` : ''}
+
+    <!-- Biggest transaction -->
+    ${biggestTxn ? `
+    <div class="insight-card amber">
+      <div class="insight-icon">💸</div>
+      <div class="insight-title">Biggest Expense</div>
+      <div class="insight-value" style="color:var(--red)">${INR(biggestTxn.amount)}</div>
+      <div class="insight-desc">
+        <span class="insight-highlight">${getCat(biggestTxn.categoryId).name}</span>
+        ${biggestTxn.note ? '— ' + biggestTxn.note : ''} on ${fmtDate(biggestTxn.date)}
+      </div>
+    </div>` : ''}
+  `;
+}
+
+// Wire insights month selector
+document.addEventListener('DOMContentLoaded', () => {
+  const insMon = document.getElementById('insights-month');
+  if (insMon) {
+    insMon.value = new Date().toISOString().slice(0,7);
+    insMon.addEventListener('change', renderInsights);
+  }
+
+  // Wire search
+  const searchInput = document.getElementById('txn-search');
+  const searchClear = document.getElementById('search-clear');
+  if (searchInput) {
+    let _st;
+    searchInput.addEventListener('input', e => {
+      _searchQ = e.target.value.trim();
+      searchClear.classList.toggle('visible', _searchQ.length > 0);
+      clearTimeout(_st);
+      _st = setTimeout(renderTransactions, 200);
+    });
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      _searchQ = '';
+      searchClear.classList.remove('visible');
+      renderTransactions();
+    });
+  }
+
+  // Populate adv cat select when transactions page opens
+  const origGoTo = goTo;
+  // Already patched via page render — populate on transactions render
+});
+
+// Patch goTo to also populate adv filter cat select
+const _origGoToForSearch = goTo;
+goTo = async function(page) {
+  await _origGoToForSearch(page);
+  if (page === 'transactions') await populateAdvCatSelect();
+};
 
 // ── SERVICE WORKER REGISTRATION ──
 if ('serviceWorker' in navigator) {
