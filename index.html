@@ -1146,6 +1146,165 @@ select.form-input option { background: var(--surface); }
 .mini-stat:not(:last-child) { border-right: 1px solid var(--border); }
 .mini-stat-val { font-family: var(--mono); font-size: 15px; font-weight: 700; }
 .mini-stat-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+/* ═══════════════════ QUICK-ADD WIDGET ═══════════════════ */
+.quick-add-widget {
+  background: var(--surface2);
+  border: 1.5px solid var(--border2);
+  border-radius: var(--r);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+.qa-title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .7px; margin-bottom: 10px; }
+.qa-amount-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.qa-sym { font-size: 18px; font-weight: 700; color: var(--accent); font-family: var(--mono); }
+.qa-amount-input {
+  flex: 1; background: transparent; border: none; border-bottom: 1.5px solid var(--border2);
+  color: var(--text); font-family: var(--mono); font-size: 24px; font-weight: 700;
+  outline: none; padding: 2px 4px;
+}
+.qa-amount-input:focus { border-bottom-color: var(--accent); }
+.qa-cats { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.qa-cat-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 10px; border-radius: 20px;
+  border: 1.5px solid var(--border2); background: transparent;
+  color: var(--muted); font-size: 12px; font-family: var(--sans);
+  cursor: pointer; transition: all .15s; white-space: nowrap;
+}
+.qa-cat-btn:hover { border-color: var(--accent); color: var(--accent); }
+.qa-cat-btn.selected { background: rgba(34,197,94,.12); border-color: var(--accent); color: var(--accent); }
+.qa-bottom-row { display: flex; gap: 8px; align-items: center; }
+.qa-type-toggle { display: flex; border-radius: 6px; overflow: hidden; border: 1.5px solid var(--border2); flex-shrink: 0; }
+.qa-type-btn {
+  padding: 6px 10px; border: none; background: transparent;
+  color: var(--muted); font-family: var(--sans); font-size: 12px; cursor: pointer; transition: all .15s;
+}
+.qa-type-btn.ae { background: rgba(239,68,68,.15); color: var(--red); }
+.qa-type-btn.ai { background: rgba(34,197,94,.15); color: var(--accent); }
+.qa-save-btn {
+  flex: 1; padding: 8px; background: var(--accent); color: #000;
+  border: none; border-radius: 7px; font-family: var(--sans);
+  font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity .15s;
+}
+.qa-save-btn:active { opacity: .8; }
+
+/* ═══════════════════ SWIPE TO DELETE ═══════════════════ */
+.txn-item-wrap { position: relative; overflow: hidden; }
+.txn-delete-bg {
+  position: absolute; right: 0; top: 0; bottom: 0;
+  background: var(--red); display: flex; align-items: center;
+  padding: 0 20px; color: #fff; font-size: 13px; font-weight: 600;
+  gap: 6px; pointer-events: none;
+  transition: width .15s;
+}
+.txn-item-inner {
+  background: var(--bg);
+  transition: transform .15s ease;
+  cursor: grab;
+  position: relative;
+}
+.txn-item-inner:active { cursor: grabbing; }
+
+/* ═══════════════════ BULK SELECT ═══════════════════ */
+.bulk-bar {
+  display: none; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  background: var(--surface2); border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 5;
+}
+.bulk-bar.active { display: flex; }
+.bulk-count { flex: 1; font-size: 13px; font-weight: 600; }
+.bulk-btn {
+  padding: 6px 12px; border-radius: 6px; border: 1.5px solid var(--border2);
+  background: transparent; color: var(--text); font-family: var(--sans);
+  font-size: 12px; cursor: pointer; transition: all .15s;
+}
+.bulk-btn:hover { border-color: var(--accent); color: var(--accent); }
+.bulk-btn.del { border-color: rgba(239,68,68,.4); color: var(--red); }
+.bulk-btn.del:hover { background: rgba(239,68,68,.1); }
+.bulk-btn.cancel { color: var(--muted); }
+.txn-checkbox {
+  display: none; width: 18px; height: 18px; border-radius: 4px;
+  border: 2px solid var(--border2); background: transparent;
+  flex-shrink: 0; cursor: pointer; transition: all .15s;
+  align-items: center; justify-content: center; font-size: 11px;
+}
+.bulk-mode .txn-checkbox { display: flex; }
+.txn-checkbox.checked { background: var(--accent); border-color: var(--accent); color: #000; }
+.bulk-cat-select {
+  background: var(--surface2); border: 1.5px solid var(--border2);
+  color: var(--text); border-radius: 6px; padding: 6px 10px;
+  font-family: var(--sans); font-size: 12px; outline: none;
+}
+
+/* ═══════════════════ CALENDAR HEATMAP ═══════════════════ */
+.heatmap-section { margin-bottom: 14px; }
+.heatmap-title { font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+#heatmap-grid-wrap {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  width: 100%;
+}
+.heatmap-day-label {
+  font-size: 8px; color: var(--muted); text-align: center;
+  padding-bottom: 4px; text-transform: uppercase; letter-spacing: .3px;
+  line-height: 1;
+}
+.heatmap-cell {
+  width: 100%;
+  padding-bottom: 100%; /* makes it square */
+  border-radius: 3px;
+  background: var(--surface3);
+  cursor: default;
+  transition: opacity .1s;
+  position: relative;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.heatmap-cell:hover { opacity: 0.75; }
+.heatmap-cell.empty { background: transparent !important; }
+.heatmap-cell.empty { background: transparent; }
+.heatmap-cell[data-level="0"] { background: var(--surface3); }
+.heatmap-cell[data-level="1"] { background: #14532d; }
+.heatmap-cell[data-level="2"] { background: #166534; }
+.heatmap-cell[data-level="3"] { background: #15803d; }
+.heatmap-cell[data-level="4"] { background: #16a34a; }
+.heatmap-cell[data-level="5"] { background: #22c55e; }
+.heatmap-legend { display: flex; align-items: center; gap: 4px; margin-top: 8px; font-size: 10px; color: var(--muted); }
+.heatmap-legend-cell { width: 10px; height: 10px; border-radius: 2px; }
+.heatmap-tooltip {
+  position: fixed; background: var(--surface2); border: 1px solid var(--border2);
+  border-radius: 6px; padding: 6px 10px; font-size: 11px; pointer-events: none;
+  z-index: 100; display: none; box-shadow: 0 4px 12px rgba(0,0,0,.4);
+}
+
+/* ═══════════════════ CATEGORY TREND ═══════════════════ */
+.trend-section { margin-bottom: 14px; }
+.trend-title  { font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.trend-cat-row { display: flex; flex-direction: column; gap: 8px; }
+.trend-cat-item { background: var(--surface2); border-radius: var(--r-sm); padding: 10px 12px; }
+.trend-cat-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.trend-cat-name { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.trend-cat-delta {
+  font-size: 11px; font-weight: 600; padding: 2px 7px;
+  border-radius: 4px; font-family: var(--mono);
+}
+.trend-cat-delta.up   { background: rgba(239,68,68,.12); color: var(--red); }
+.trend-cat-delta.down { background: rgba(34,197,94,.12);  color: var(--accent); }
+.trend-cat-delta.same { background: var(--surface3); color: var(--muted); }
+.trend-bars-row { display: flex; gap: 6px; align-items: flex-end; }
+.trend-bar-wrap { flex: 1; }
+.trend-bar-label { font-size: 9px; color: var(--muted); text-align: center; margin-bottom: 3px; }
+.trend-bar-track { height: 28px; border-radius: 4px; background: var(--surface3); position: relative; overflow: hidden; }
+.trend-bar-fill  { position: absolute; bottom: 0; left: 0; right: 0; border-radius: 4px 4px 0 0; transition: height .4s ease; }
+.trend-bar-val   { font-size: 9px; color: var(--muted); text-align: center; margin-top: 3px; font-family: var(--mono); }
+
 </style>
 </head>
 <body>
@@ -1225,9 +1384,31 @@ select.form-input option { background: var(--surface); }
 
       <!-- ── DASHBOARD ── -->
       <div class="page active" id="page-dashboard">
+
+        <!-- ── QUICK ADD WIDGET ── -->
+        <div class="quick-add-widget" id="quick-add-widget">
+          <div class="qa-title">⚡ Quick Add</div>
+          <div class="qa-amount-row">
+            <span class="qa-sym">₹</span>
+            <input class="qa-amount-input" type="number" id="qa-amount" placeholder="0" inputmode="decimal" min="0">
+          </div>
+          <div class="qa-cats" id="qa-cats"><!-- filled by JS --></div>
+          <div class="qa-bottom-row">
+            <div class="qa-type-toggle">
+              <button class="qa-type-btn ae" id="qa-exp-btn" onclick="setQAType('expense')">− Expense</button>
+              <button class="qa-type-btn" id="qa-inc-btn" onclick="setQAType('income')">+ Income</button>
+            </div>
+            <button class="qa-save-btn" onclick="quickAddSave()">Add →</button>
+          </div>
+        </div>
+
         <div class="balance-card">
           <div class="bal-label">Total Balance</div>
           <div class="bal-amount" id="stat-bal">₹ 0.00</div>
+          <div id="ob-dash-hint" style="display:none;margin-top:6px;font-size:11px;color:var(--muted);display:flex;align-items:center;justify-content:space-between">
+            <span>Opening Balance: <span id="ob-dash-val" style="color:var(--accent);font-weight:600"></span></span>
+            <button onclick="goTo('settings')" style="background:none;border:none;color:var(--muted);font-size:11px;cursor:pointer;text-decoration:underline;font-family:var(--sans)">Edit</button>
+          </div>
         </div>
         <div class="mini-row">
           <div class="mini-card">
@@ -1299,6 +1480,17 @@ select.form-input option { background: var(--surface); }
 
       <!-- ── TRANSACTIONS ── -->
       <div class="page" id="page-transactions">
+        <!-- BULK BAR -->
+        <div class="bulk-bar" id="bulk-bar">
+          <div class="bulk-count" id="bulk-count">0 selected</div>
+          <select class="bulk-cat-select" id="bulk-cat-sel">
+            <option value="">Move to category…</option>
+          </select>
+          <button class="bulk-btn" id="bulk-move-btn" onclick="bulkMove()">Move</button>
+          <button class="bulk-btn del" onclick="bulkDelete()">🗑 Delete</button>
+          <button class="bulk-btn cancel" onclick="exitBulkMode()">✕</button>
+        </div>
+
         <!-- Search -->
         <div class="search-wrap">
           <span class="search-icon">🔍</span>
@@ -1420,6 +1612,45 @@ select.form-input option { background: var(--surface); }
           </div>
         </div>
 
+        <!-- ── CALENDAR HEATMAP ── -->
+        <div class="chart-card heatmap-section">
+          <div class="card-title">
+            <span>📅 Spending Heatmap</span>
+            <span id="heatmap-month-label" style="font-size:12px;color:var(--muted)"></span>
+          </div>
+          <div id="heatmap-grid-wrap">
+            <div class="heatmap-grid" id="heatmap-days-header">
+              <div class="heatmap-day-label">Sun</div>
+              <div class="heatmap-day-label">Mon</div>
+              <div class="heatmap-day-label">Tue</div>
+              <div class="heatmap-day-label">Wed</div>
+              <div class="heatmap-day-label">Thu</div>
+              <div class="heatmap-day-label">Fri</div>
+              <div class="heatmap-day-label">Sat</div>
+            </div>
+            <div class="heatmap-grid" id="heatmap-grid"></div>
+            <div class="heatmap-legend">
+              <span>Less</span>
+              <div class="heatmap-legend-cell" style="background:var(--surface3)"></div>
+              <div class="heatmap-legend-cell" data-level="1" style="background:#14532d"></div>
+              <div class="heatmap-legend-cell" data-level="2" style="background:#166534"></div>
+              <div class="heatmap-legend-cell" data-level="3" style="background:#15803d"></div>
+              <div class="heatmap-legend-cell" data-level="4" style="background:#16a34a"></div>
+              <div class="heatmap-legend-cell" data-level="5" style="background:#22c55e"></div>
+              <span>More</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CATEGORY TREND ── -->
+        <div class="chart-card trend-section">
+          <div class="card-title">
+            <span>📊 Category Trend</span>
+            <span style="font-size:12px;color:var(--muted)" id="trend-vs-label"></span>
+          </div>
+          <div class="trend-cat-row" id="trend-cat-row"></div>
+        </div>
+
         <!-- Income breakdown -->
         <div class="chart-card">
           <div class="card-title">
@@ -1498,6 +1729,30 @@ select.form-input option { background: var(--surface); }
 
       <!-- ── SETTINGS ── -->
       <div class="page" id="page-settings">
+
+        <!-- Opening Balance Card -->
+        <div class="backup-card" style="border-color:rgba(34,197,94,.3);margin-bottom:12px">
+          <div class="backup-title" style="display:flex;align-items:center;gap:8px">
+            <span>💰</span> Opening Balance
+          </div>
+          <div class="backup-desc" style="margin-bottom:14px">
+            Yahan apna starting balance set karo. Yeh Income mein count hoga lekin transactions list mein nahi dikhega.
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:var(--surface3);border-radius:10px;padding:4px 4px 4px 14px;border:1.5px solid var(--border2)" id="ob-input-wrap">
+            <span style="font-size:16px;font-weight:700;color:var(--accent)">₹</span>
+            <input
+              type="number" id="ob-input" min="0" step="0.01"
+              placeholder="0.00"
+              style="flex:1;background:transparent;border:none;color:var(--text);font-size:18px;font-weight:600;outline:none;font-family:var(--mono);padding:8px 0"
+            >
+            <button onclick="saveOpeningBalance()" style="background:var(--accent);color:#000;border:none;border-radius:8px;padding:10px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:var(--sans)">Save</button>
+          </div>
+          <div id="ob-saved-info" style="display:none;margin-top:10px;font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:space-between">
+            <span id="ob-saved-label"></span>
+            <button onclick="clearOpeningBalance()" style="background:none;border:none;color:var(--red);font-size:12px;cursor:pointer;font-family:var(--sans)">Remove</button>
+          </div>
+        </div>
+
         <div class="backup-card">
           <div class="backup-title">⚙ Settings</div>
           <div class="backup-desc">Currency, date format, and display preferences coming soon.</div>
@@ -1715,10 +1970,14 @@ const Cache = (() => {
       if (t.type==='income') incP+=p;
       else { expP+=p; byC[t.categoryId]=(byC[t.categoryId]||0)+p; }
     }
+    // Add opening balance
+    const ob = parseFloat(localStorage.getItem('arthika_opening_balance') || '0') || 0;
+    const obP = Math.round(ob * 100);
     _s = {
-      income:  incP/100,
+      income:  (incP + obP)/100,
       expense: expP/100,
-      balance: (incP-expP)/100,
+      balance: (incP + obP - expP)/100,
+      openingBalance: ob,
       byCategory: Object.fromEntries(Object.entries(byC).map(([k,v])=>[k,v/100]))
     };
     return _s;
@@ -1800,12 +2059,15 @@ async function goTo(page) {
   closeSidebar();
 
   // render
-  if (page==='dashboard')    await renderDashboard();
-  if (page==='add')          { await populateCatSelect(); document.getElementById('f-date').value = new Date().toISOString().slice(0,10); }
-  if (page==='transactions') await renderTransactions();
-  if (page==='categories')   await renderCats();
-  if (page==='summary')      await renderSummary();
-  if (page==='insights')     await renderInsights();
+  try {
+    if (page==='dashboard')    await renderDashboard();
+    if (page==='add')          { await populateCatSelect(); document.getElementById('f-date').value = new Date().toISOString().slice(0,10); }
+    if (page==='transactions') await renderTransactions();
+    if (page==='categories')   await renderCats();
+    if (page==='summary')      await renderSummary();
+    if (page==='insights')     await renderInsights();
+  if (page==='settings')     updateOBUI();
+  } catch(e) { console.error('[goTo]', page, e); }
 }
 
 // ══════════════════════════════════════
@@ -1874,6 +2136,9 @@ async function renderDashboard() {
       </div>
     </div>`;
   }).join('');
+
+  // Quick Add widget cats
+  initQuickAdd();
 }
 
 function renderDonut(svgId, legendId, entries, total) {
@@ -1958,6 +2223,18 @@ async function renderTransactions() {
   document.getElementById('total-exp-val').textContent=INR(totalExp);
 
   const el=document.getElementById('txn-full-list');
+  // Long-press to enter bulk mode
+  if (!el._bulkListenerAdded) {
+    el._bulkListenerAdded = true;
+    let _lpTimer;
+    el.addEventListener('touchstart', e => {
+      const item = e.target.closest('.txn-item');
+      if (!item || _bulkMode) return;
+      _lpTimer = setTimeout(() => { enterBulkMode(); populateBulkCatSel(); }, 500);
+    }, {passive:true});
+    el.addEventListener('touchend',   () => clearTimeout(_lpTimer));
+    el.addEventListener('touchmove',  () => clearTimeout(_lpTimer));
+  }
   if(!txns.length){
     el.innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><div class="empty-ttl">No transactions found</div><div class="empty-sub">Try adjusting filters</div></div>`;
     return;
@@ -1975,20 +2252,54 @@ async function renderTransactions() {
     </div>
     <div class="txn-list" style="margin-bottom:10px">${items.map(t=>{
       const cat=getCat(t.categoryId);
-      return `<div class="txn-item">
-        ${catIconEl(cat)}
-        <div class="txn-info">
-          <div class="txn-name">${cat.name}</div>
-          <div class="txn-sub">${t.note||'—'}</div>
+      return `<div class="txn-item-wrap" id="wrap-${t.id}">
+        <div class="txn-delete-bg">🗑 Delete</div>
+        <div class="txn-item-inner" id="inner-${t.id}">
+          <div class="txn-item" onclick="if(_bulkMode){toggleBulkItem('${t.id}',this)}else{openEdit('${t.id}')}">
+            <div class="txn-checkbox" id="cb-${t.id}"></div>
+            ${catIconEl(cat)}
+            <div class="txn-info">
+              <div class="txn-name">${cat.name}</div>
+              <div class="txn-sub">${t.note||'—'}</div>
+            </div>
+            <div class="txn-right">
+              <div class="txn-amt ${t.type}">${t.type==='expense'?'-':'+'} ${INR(t.amount)}</div>
+              <div class="txn-time">${t.time||''}</div>
+            </div>
+          </div>
         </div>
-        <div class="txn-right">
-          <div class="txn-amt ${t.type}">${t.type==='expense'?'-':'+'} ${INR(t.amount)}</div>
-          <div class="txn-time">${t.time||''}</div>
-        </div>
-        <button class="del-btn" onclick="delTxn('${t.id}')">✕</button>
       </div>`;
     }).join('')}</div>`;
   }).join('');
+
+  // Attach swipe-to-delete on each inner element
+  txns.forEach(t => {
+    const inner = document.getElementById('inner-' + t.id);
+    if (inner) makeSwipeable(inner, t.id);
+  });
+
+  // Re-apply bulk checkboxes if in bulk mode
+  if (_bulkMode) {
+    _bulkSelected.forEach(id => {
+      const cb = document.getElementById('cb-' + id);
+      if (cb) cb.classList.add('checked');
+    });
+  }
+}
+
+function toggleBulkItem(id, el) {
+  const cb = document.getElementById('cb-' + id);
+  if (!cb) return;
+  if (_bulkSelected.has(id)) {
+    _bulkSelected.delete(id);
+    cb.classList.remove('checked');
+    cb.textContent = '';
+  } else {
+    _bulkSelected.add(id);
+    cb.classList.add('checked');
+    cb.textContent = '✓';
+  }
+  updateBulkBar();
 }
 
 async function delTxn(id) {
@@ -2168,6 +2479,12 @@ async function renderSummary() {
 
   // Trend bars — both income & expense
   renderTrendBars(filtered, range);
+
+  // Heatmap
+  renderHeatmap(allTxns, range);
+
+  // Category trend (this month vs last)
+  renderCategoryTrend(allTxns, range);
 }
 
 function renderTrendBars(filtered, range) {
@@ -2321,6 +2638,383 @@ document.getElementById('edit-modal').addEventListener('click',e=>{if(e.target==
 // ══════════════════════════════════════
 // WIRE EVENTS
 // ══════════════════════════════════════
+
+// ══════════════════════════════════════
+// FEATURE 1: QUICK ADD WIDGET
+// ══════════════════════════════════════
+let _qaType = 'expense';
+let _qaCatId = null;
+
+async function initQuickAdd() {
+  await loadCats();
+  const wrap = document.getElementById('qa-cats');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  _cats.slice(0, 6).forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'qa-cat-btn';
+    btn.dataset.id = c.id;
+    btn.innerHTML = `${c.icon} ${c.name}`;
+    btn.onclick = () => {
+      wrap.querySelectorAll('.qa-cat-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      _qaCatId = c.id;
+    };
+    wrap.appendChild(btn);
+    // auto-select first
+    if (!_qaCatId) { btn.classList.add('selected'); _qaCatId = c.id; }
+  });
+}
+
+function setQAType(t) {
+  _qaType = t;
+  document.getElementById('qa-exp-btn').className = 'qa-type-btn' + (t === 'expense' ? ' ae' : '');
+  document.getElementById('qa-inc-btn').className = 'qa-type-btn' + (t === 'income'  ? ' ai' : '');
+}
+
+async function quickAddSave() {
+  const amt = parseFloat(document.getElementById('qa-amount').value);
+  if (!amt || amt <= 0) { toast('Enter an amount', 'err'); return; }
+  const txn = {
+    id: crypto.randomUUID(),
+    type: _qaType,
+    amount: Math.round(amt * 100) / 100,
+    categoryId: _qaCatId || (_cats[0] && _cats[0].id),
+    date: new Date().toISOString().slice(0, 10),
+    note: '',
+    time: new Date().toLocaleTimeString('en-IN', {hour:'2-digit', minute:'2-digit', hour12:true}),
+    createdAt: Date.now()
+  };
+  await DB.put('transactions', txn);
+  Cache.invalidate();
+  document.getElementById('qa-amount').value = '';
+  toast('Added ✓', 'ok');
+  await renderDashboard();
+}
+
+// ══════════════════════════════════════
+// FEATURE 2: SWIPE TO DELETE
+// ══════════════════════════════════════
+function makeSwipeable(el, txnId) {
+  let startX = 0, currentX = 0, isDragging = false;
+  const THRESHOLD = 80;
+
+  function onStart(e) {
+    startX = (e.touches ? e.touches[0].clientX : e.clientX);
+    isDragging = true;
+    el.style.transition = 'none';
+  }
+  function onMove(e) {
+    if (!isDragging) return;
+    const x = (e.touches ? e.touches[0].clientX : e.clientX);
+    currentX = Math.min(0, x - startX);
+    el.style.transform = `translateX(${currentX}px)`;
+    const bg = el.closest('.txn-item-wrap')?.querySelector('.txn-delete-bg');
+    if (bg) bg.style.opacity = Math.min(1, Math.abs(currentX) / THRESHOLD);
+    if (e.cancelable) e.preventDefault();
+  }
+  async function onEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    el.style.transition = 'transform .2s ease';
+    if (Math.abs(currentX) >= THRESHOLD) {
+      el.style.transform = 'translateX(-100%)';
+      setTimeout(async () => {
+        await DB.del('transactions', txnId);
+        Cache.invalidate();
+        toast('Deleted', 'ok');
+        await renderTransactions();
+      }, 200);
+    } else {
+      el.style.transform = 'translateX(0)';
+      const bg = el.closest('.txn-item-wrap')?.querySelector('.txn-delete-bg');
+      if (bg) bg.style.opacity = 0;
+    }
+    currentX = 0;
+  }
+
+  el.addEventListener('touchstart', onStart, {passive:true});
+  el.addEventListener('touchmove',  onMove,  {passive:false});
+  el.addEventListener('touchend',   onEnd);
+  el.addEventListener('mousedown',  onStart);
+  document.addEventListener('mousemove', e => { if(isDragging) onMove(e); });
+  document.addEventListener('mouseup',   e => { if(isDragging) onEnd(e); });
+}
+
+// ══════════════════════════════════════
+// FEATURE 3: BULK SELECT / DELETE / MOVE
+// ══════════════════════════════════════
+let _bulkMode = false;
+let _bulkSelected = new Set();
+
+function enterBulkMode() {
+  _bulkMode = true;
+  _bulkSelected.clear();
+  document.getElementById('txn-full-list').classList.add('bulk-mode');
+  document.getElementById('bulk-bar').classList.add('active');
+  updateBulkBar();
+}
+
+function exitBulkMode() {
+  _bulkMode = false;
+  _bulkSelected.clear();
+  document.getElementById('txn-full-list').classList.remove('bulk-mode');
+  document.getElementById('bulk-bar').classList.remove('active');
+  // Uncheck all
+  document.querySelectorAll('.txn-checkbox').forEach(cb => cb.classList.remove('checked'));
+}
+
+function updateBulkBar() {
+  document.getElementById('bulk-count').textContent = _bulkSelected.size + ' selected';
+  document.getElementById('bulk-move-btn').disabled = _bulkSelected.size === 0;
+}
+
+async function populateBulkCatSel() {
+  await loadCats();
+  const sel = document.getElementById('bulk-cat-sel');
+  sel.innerHTML = '<option value="">Move to category…</option>' +
+    _cats.map(c => `<option value="${c.id}">${c.icon} ${c.name}</option>`).join('');
+}
+
+async function bulkDelete() {
+  if (!_bulkSelected.size) return;
+  if (!confirm(`Delete ${_bulkSelected.size} transaction(s)?`)) return;
+  for (const id of _bulkSelected) await DB.del('transactions', id);
+  Cache.invalidate();
+  exitBulkMode();
+  toast(`Deleted ${_bulkSelected.size}`, 'ok');
+  await renderTransactions();
+}
+
+async function bulkMove() {
+  const catId = document.getElementById('bulk-cat-sel').value;
+  if (!catId || !_bulkSelected.size) { toast('Select a category', 'err'); return; }
+  const all = await DB.getAll('transactions');
+  for (const id of _bulkSelected) {
+    const t = all.find(x => x.id === id);
+    if (t) await DB.put('transactions', {...t, categoryId: catId});
+  }
+  Cache.invalidate();
+  exitBulkMode();
+  toast('Category updated ✓', 'ok');
+  await renderTransactions();
+}
+
+// ══════════════════════════════════════
+// FEATURE 4: CALENDAR HEATMAP
+// ══════════════════════════════════════
+function renderHeatmap(txns, dateRange) {
+  const grid = document.getElementById('heatmap-grid');
+  const lbl  = document.getElementById('heatmap-month-label');
+  if (!grid) return;
+
+  // Build daily spend map
+  const dailyMap = {};
+  txns.filter(t => t.type === 'expense').forEach(t => {
+    dailyMap[t.date] = (dailyMap[t.date] || 0) + t.amount;
+  });
+
+  // Determine date range to show
+  const now   = new Date();
+  let year, month;
+  if (dateRange && dateRange.startDate) {
+    const d = new Date(dateRange.startDate + 'T00:00:00');
+    year  = d.getFullYear();
+    month = d.getMonth();
+  } else {
+    year  = now.getFullYear();
+    month = now.getMonth();
+  }
+
+  const monthName = new Date(year, month, 1).toLocaleString('en-IN', {month:'long', year:'numeric'});
+  lbl.textContent = monthName;
+
+  const daysInMonth  = new Date(year, month + 1, 0).getDate();
+  const firstWeekday = new Date(year, month, 1).getDay(); // 0=Sun
+
+  const vals = Object.entries(dailyMap)
+    .filter(([d]) => d.startsWith(`${year}-${String(month+1).padStart(2,'0')}`))
+    .map(([,v]) => v);
+  const maxVal = Math.max(...vals, 1);
+
+  grid.innerHTML = '';
+
+  // Empty cells before first day
+  for (let i = 0; i < firstWeekday; i++) {
+    const el = document.createElement('div');
+    el.className = 'heatmap-cell empty';
+    grid.appendChild(el);
+  }
+
+  const tooltip = document.getElementById('heatmap-tooltip') || (() => {
+    const t = document.createElement('div');
+    t.id = 'heatmap-tooltip';
+    t.className = 'heatmap-tooltip';
+    document.body.appendChild(t);
+    return t;
+  })();
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const val     = dailyMap[dateStr] || 0;
+    const level   = val === 0 ? 0 : Math.ceil((val / maxVal) * 5);
+
+    const cell = document.createElement('div');
+    cell.className = 'heatmap-cell';
+    cell.dataset.level = level;
+    cell.dataset.date  = dateStr;
+    cell.dataset.val   = val;
+
+    cell.addEventListener('mouseenter', e => {
+      tooltip.style.display = 'block';
+      tooltip.innerHTML = `<strong>${dateStr}</strong><br>${val > 0 ? INR(val) : 'No expense'}`;
+      tooltip.style.left = (e.clientX + 10) + 'px';
+      tooltip.style.top  = (e.clientY - 40) + 'px';
+    });
+    cell.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    cell.addEventListener('touchstart', () => {
+      tooltip.style.display = 'block';
+      tooltip.innerHTML = `<strong>${dateStr}</strong><br>${val > 0 ? INR(val) : 'No expense'}`;
+      tooltip.style.left = '50%'; tooltip.style.top = '40px';
+      setTimeout(() => { tooltip.style.display = 'none'; }, 2000);
+    }, {passive:true});
+
+    grid.appendChild(cell);
+  }
+}
+
+// ══════════════════════════════════════
+// FEATURE 5: CATEGORY TREND (this month vs last month)
+// ══════════════════════════════════════
+function renderCategoryTrend(allTxns, range) {
+  const row    = document.getElementById('trend-cat-row');
+  const vsLbl  = document.getElementById('trend-vs-label');
+  if (!row) return;
+
+  const now      = new Date();
+  let curYear, curMonth;
+  if (range && range.startDate) {
+    const d = new Date(range.startDate + 'T00:00:00');
+    curYear = d.getFullYear(); curMonth = d.getMonth();
+  } else {
+    curYear = now.getFullYear(); curMonth = now.getMonth();
+  }
+
+  const prevMonth = curMonth === 0 ? 11 : curMonth - 1;
+  const prevYear  = curMonth === 0 ? curYear - 1 : curYear;
+
+  const curStr  = `${curYear}-${String(curMonth+1).padStart(2,'0')}`;
+  const prevStr = `${prevYear}-${String(prevMonth+1).padStart(2,'0')}`;
+
+  const curName  = new Date(curYear, curMonth, 1).toLocaleString('en-IN',{month:'short'});
+  const prevName = new Date(prevYear, prevMonth, 1).toLocaleString('en-IN',{month:'short'});
+  if (vsLbl) vsLbl.textContent = `${prevName} vs ${curName}`;
+
+  const curTxns  = allTxns.filter(t => t.type==='expense' && t.date.startsWith(curStr));
+  const prevTxns = allTxns.filter(t => t.type==='expense' && t.date.startsWith(prevStr));
+
+  const curByCat  = {};
+  const prevByCat = {};
+  curTxns.forEach(t  => { curByCat[t.categoryId]  = (curByCat[t.categoryId]  || 0) + t.amount; });
+  prevTxns.forEach(t => { prevByCat[t.categoryId] = (prevByCat[t.categoryId] || 0) + t.amount; });
+
+  const allCatIds = [...new Set([...Object.keys(curByCat), ...Object.keys(prevByCat)])];
+  if (!allCatIds.length) { row.innerHTML = '<div style="color:var(--muted);font-size:13px">No expense data</div>'; return; }
+
+  // Sort by current month spend desc
+  allCatIds.sort((a, b) => (curByCat[b] || 0) - (curByCat[a] || 0));
+
+  const maxVal = Math.max(...allCatIds.map(id => Math.max(curByCat[id]||0, prevByCat[id]||0)), 1);
+
+  row.innerHTML = allCatIds.slice(0, 6).map(catId => {
+    const cat    = getCat(catId);
+    const cur    = curByCat[catId]  || 0;
+    const prev   = prevByCat[catId] || 0;
+    const pct    = cur > 0 && prev > 0
+      ? ((cur - prev) / prev * 100).toFixed(0)
+      : cur > 0 ? '+new' : '—';
+    const deltaClass = cur > prev ? 'up' : cur < prev ? 'down' : 'same';
+    const deltaLabel = typeof pct === 'string' ? pct : (cur > prev ? `+${pct}%` : `${pct}%`);
+
+    const curH  = prev === 0 && cur === 0 ? 0 : Math.round((cur  / maxVal) * 100);
+    const prevH = prev === 0 && cur === 0 ? 0 : Math.round((prev / maxVal) * 100);
+
+    return `<div class="trend-cat-item">
+      <div class="trend-cat-top">
+        <div class="trend-cat-name">
+          <span style="font-size:16px">${cat.icon}</span>${cat.name}
+        </div>
+        <span class="trend-cat-delta ${deltaClass}">${deltaLabel}</span>
+      </div>
+      <div class="trend-bars-row">
+        <div class="trend-bar-wrap">
+          <div class="trend-bar-label">${prevName}</div>
+          <div class="trend-bar-track">
+            <div class="trend-bar-fill" style="height:${prevH}%;background:${cat.color}55"></div>
+          </div>
+          <div class="trend-bar-val">${prev > 0 ? INRs(prev) : '—'}</div>
+        </div>
+        <div class="trend-bar-wrap">
+          <div class="trend-bar-label">${curName}</div>
+          <div class="trend-bar-track">
+            <div class="trend-bar-fill" style="height:${curH}%;background:${cat.color}"></div>
+          </div>
+          <div class="trend-bar-val">${cur > 0 ? INRs(cur) : '—'}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+
+// ══════════════════════════════════════
+// OPENING BALANCE
+// ══════════════════════════════════════
+function getOpeningBalance() {
+  return parseFloat(localStorage.getItem('arthika_opening_balance') || '0') || 0;
+}
+
+function saveOpeningBalance() {
+  const val = parseFloat(document.getElementById('ob-input').value);
+  if (isNaN(val) || val < 0) { toast('Valid amount daalo', 'err'); return; }
+  localStorage.setItem('arthika_opening_balance', val.toString());
+  Cache.invalidate();
+  updateOBUI();
+  toast('Opening balance saved ✓', 'ok');
+  renderDashboard();
+}
+
+function clearOpeningBalance() {
+  if (!confirm('Opening balance remove kar dein?')) return;
+  localStorage.removeItem('arthika_opening_balance');
+  Cache.invalidate();
+  document.getElementById('ob-input').value = '';
+  updateOBUI();
+  toast('Removed', 'ok');
+  renderDashboard();
+}
+
+function updateOBUI() {
+  const ob = getOpeningBalance();
+  const infoEl = document.getElementById('ob-saved-info');
+  const labelEl = document.getElementById('ob-saved-label');
+  const inputEl = document.getElementById('ob-input');
+  const dashHint = document.getElementById('ob-dash-hint');
+  const dashVal  = document.getElementById('ob-dash-val');
+
+  if (ob > 0) {
+    if (infoEl)  { infoEl.style.display  = 'flex'; }
+    if (labelEl) { labelEl.textContent   = 'Current: ' + INR(ob); }
+    if (inputEl) { inputEl.value         = ob; }
+    if (dashHint){ dashHint.style.display= 'flex'; }
+    if (dashVal) { dashVal.textContent   = INR(ob); }
+  } else {
+    if (infoEl)  { infoEl.style.display  = 'none'; }
+    if (inputEl) { inputEl.value         = ''; }
+    if (dashHint){ dashHint.style.display= 'none'; }
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   // Nav links (sidebar + bottom nav + section links)
   document.querySelectorAll('[data-page]').forEach(el=>{
@@ -2466,6 +3160,7 @@ async function populateAdvCatSelect() {
 const _origRenderTransactions = renderTransactions;
 renderTransactions = async function() {
   await loadCats();
+  await populateAdvCatSelect().catch(()=>{});
   let txns = await DB.getAll('transactions');
 
   // type chip
@@ -2535,20 +3230,37 @@ renderTransactions = async function() {
     <div class="txn-list" style="margin-bottom:10px">${items.map(t => {
       const cat = getCat(t.categoryId);
       const noteHl = _searchQ && t.note ? t.note.replace(new RegExp(_searchQ,'gi'), m=>`<mark style="background:rgba(34,197,94,.25);color:var(--accent);border-radius:2px">${m}</mark>`) : (t.note||'—');
-      return `<div class="txn-item">
-        ${catIconEl(cat)}
-        <div class="txn-info">
-          <div class="txn-name">${cat.name}</div>
-          <div class="txn-sub">${noteHl}</div>
+      return `<div class="txn-item-wrap" id="wrap-${t.id}">
+        <div class="txn-delete-bg">🗑 Delete</div>
+        <div class="txn-item-inner" id="inner-${t.id}">
+          <div class="txn-item" onclick="if(_bulkMode){toggleBulkItem('${t.id}',this)}else{openEdit('${t.id}')}">
+            <div class="txn-checkbox" id="cb-${t.id}"></div>
+            ${catIconEl(cat)}
+            <div class="txn-info">
+              <div class="txn-name">${cat.name}</div>
+              <div class="txn-sub">${noteHl}</div>
+            </div>
+            <div class="txn-right">
+              <div class="txn-amt ${t.type}">${t.type==='expense'?'-':'+'} ${INR(t.amount)}</div>
+              <div class="txn-time">${t.time||''}</div>
+            </div>
+          </div>
         </div>
-        <div class="txn-right">
-          <div class="txn-amt ${t.type}">${t.type==='expense'?'-':'+'} ${INR(t.amount)}</div>
-          <div class="txn-time">${t.time||''}</div>
-        </div>
-        <button class="del-btn" onclick="delTxn('${t.id}')">✕</button>
       </div>`;
     }).join('')}</div>`;
   }).join('');
+
+  // Attach swipe + re-apply bulk state
+  txns.forEach(t => {
+    const inner = document.getElementById('inner-' + t.id);
+    if (inner) makeSwipeable(inner, t.id);
+  });
+  if (_bulkMode) {
+    _bulkSelected.forEach(id => {
+      const cb = document.getElementById('cb-' + id);
+      if (cb) { cb.classList.add('checked'); cb.textContent = '✓'; }
+    });
+  }
 };
 
 // ══════════════════════════════════════
@@ -2754,12 +3466,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Already patched via page render — populate on transactions render
 });
 
-// Patch goTo to also populate adv filter cat select
-const _origGoToForSearch = goTo;
-goTo = async function(page) {
-  await _origGoToForSearch(page);
-  if (page === 'transactions') await populateAdvCatSelect();
-};
+// populateAdvCatSelect is now called inside renderTransactions directly
 
 // ── SERVICE WORKER REGISTRATION ──
 if ('serviceWorker' in navigator) {
